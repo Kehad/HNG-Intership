@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <script src="./script.js" defer></script>
+    <title>Profile Card</title>
+  </head>
+  <body>
+    <div class="profile-card">
+      <img
+        data-testid="profilePicture"
+        class="profile-picture"
+        src="/profile-pic.jpg"
+        alt="Profile Picture"
+      />
+
+      <h1 data-testid="fullName" class="full-name">Adigun Kehinde</h1>
+
+      <h2 data-testid="jobTitle" class="job-title">Frontend Developer</h2>
+
+      <p data-testid="shortBio" class="short-bio">
+        Passionate frontend developer with a keen eye for creating modern
+        user interfaces. Experienced in modern web technologies and committed to
+        writing clean, efficient code. Always eager to learn new technologies
+        and solve complex problems.
+      </p>
+
+      <div data-testid="currentLocation" class="info-item">
+        📍 Osun State, Nigeria
+      </div>
+
+      <div data-testid="emailAddress" class="info-item">
+        ✉️ adigunkehinde05@gmail.com
+      </div>
+
+      <div data-testid="socialLinks" class="social-links">
+        <a
+          href="https://www.linkedin.com/in/kehinde-adigun-/"
+          class="social-link"
+          >LinkedIn</a
+        >
+        <a href="https://github.com/Kehad" class="social-link">GitHub</a>
+        <a href="https://x.com/Littlegenius01" class="social-link">Twitter</a>
+      </div>
+
+      <div data-testid="currentTimeUTC" class="time">
+        Current UTC Time: <span id="utc-time"></span>
+      </div>
+    </div>
+  </body>
+</html>
