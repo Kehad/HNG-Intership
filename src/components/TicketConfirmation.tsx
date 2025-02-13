@@ -1,6 +1,6 @@
 import domtoimage from "dom-to-image";
 import BarcodeGenerator from "./BarcodeGenerator";
-import React, { useRef } from "react";
+import { useRef } from "react";
 
 interface SelectionData {
   ticketType: string;
