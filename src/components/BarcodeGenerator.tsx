@@ -6,7 +6,7 @@ interface BarcodeProps {
 }
 
 const BarcodeGenerator: React.FC<BarcodeProps> = ({
-  value = "123456789012" 
+  value = "" 
 }) => {
   const barcodeRef = useRef<SVGSVGElement | null>(null); // Explicitly define ref type
 

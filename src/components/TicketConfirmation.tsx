@@ -50,6 +50,25 @@ const TicketConfirmation = ({
         console.error("Error generating image:", error);
       });
   };
+function generateUPC() {
+  let upcBase = Math.floor(Math.random() * 1e11)
+    .toString()
+    .padStart(11, "0"); // Generate 11-digit base
+  let checkDigit = calculateCheckDigit(upcBase); // Calculate check digit
+  return upcBase + checkDigit; // Combine base with check digit
+}
+
+/** Function to calculate UPC-A check digit */
+function calculateCheckDigit(upcBase: string) {
+  let sum = 0;
+  for (let i = 0; i < 11; i++) {
+    sum += parseInt(upcBase[i]) * (i % 2 === 0 ? 3 : 1);
+  }
+  let checkDigit = (10 - (sum % 10)) % 10; // Modulo to get the check digit
+  return checkDigit.toString();
+}
+  const value = generateUPC();
+  console.log(value)
 
   return (
     <div className="min-h-screen bg-[#041E23] md:p-6">
@@ -136,7 +155,7 @@ const TicketConfirmation = ({
 
             {/* Barcode */}
             <div className="mt-8 py-8 flex items-center justify-center border-t-2 border-dashed border-teal-400">
-              <BarcodeGenerator value="123456789012" />
+              <BarcodeGenerator value={value} />
             </div>
           </div>
         </div>
