@@ -68,7 +68,7 @@ function calculateCheckDigit(upcBase: string) {
   return checkDigit.toString();
 }
   const value = generateUPC();
-  console.log(value)
+
 
   return (
     <div className="min-h-screen bg-[#041E23] md:p-6">

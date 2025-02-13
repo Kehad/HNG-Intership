@@ -57,7 +57,7 @@ const Selection: React.FC<SelectionProps> = ({  setData }) => {
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log(formData);
+
     setData(formData); 
   };
 

@@ -51,7 +51,7 @@ const Attendee: React.FC<AttendeeProps> = ({ setAttendeeData }) => {
           "email" in parsedData &&
           "about" in parsedData
         ) {
-          console.log(parsedData);
+        
 
           // Set form data without imageUrl
           const { imageUrl, ...rest } = parsedData;
@@ -136,7 +136,7 @@ const Attendee: React.FC<AttendeeProps> = ({ setAttendeeData }) => {
       newErrors.imageUrl = "Image is required";
       valid = false;
     }
-    console.log(newErrors);
+
     setErrors(newErrors);
     return valid;
   };
