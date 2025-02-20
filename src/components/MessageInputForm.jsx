@@ -9,31 +9,25 @@ const MessageInputForm = ({
   isLoading,
 }) => {
   return (
-    <div className="bg-white/80 backdrop-blur-sm p-6 flex flex-col md:flex-row gap-5 rounded-2xl shadow-lg border border-gray-100">
-      <textarea
-        className="w-full p-4 border border-gray-200 rounded-xl resize-none h-20 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all text-sm"
-        value={inputText}
-        onChange={(e) => setInputText(e.target.value)}
-        placeholder="Type your message here..."
-        aria-label="Input text"
-      />
-      <div className="flex justify-end mt-4">
+    <div className="fixed bottom-0 left-0 right-0 bg-white backdrop-blur-sm p-4 shadow-lg border-t border-gray-100">
+      <div className="max-w-4xl mx-auto flex gap-3">
+        <textarea
+          className="flex-grow p-3 border border-gray-200 rounded-xl resize-none h-20 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+          value={inputText}
+          onChange={(e) => setInputText(e.target.value)}
+          placeholder="Type your message here..."
+          aria-label="Input text"
+        />
         <Button
           onClick={handleSend}
           disabled={isLoading}
           aria-label="Send message"
-          className="bg-blue-600 hover:bg-blue-700 text-white h-12 px-6 rounded-xl shadow-sm transition-all duration-200 hover:scale-105 flex items-center gap-2"
+          className="self-end bg-blue-600 hover:bg-blue-700 text-white h-12 w-12 rounded-xl shadow-sm transition-colors"
         >
           {isLoading ? (
-            <>
-              <Loader2 className="h-5 w-5 animate-spin" />
-              <span>Sending...</span>
-            </>
+            <Loader2 className="h-6 w-6 animate-spin" />
           ) : (
-            <>
-              <span>Send</span>
-              <Send className="h-5 w-5" />
-            </>
+            <Send className="h-6 w-6" />
           )}
         </Button>
       </div>

@@ -43,7 +43,7 @@ const MessageCard = ({
             disabled={isLoadingTranslate}
             onClick={() => buttonTranslateHandler(message.id)}
             aria-label="Translate text"
-            className="bg-blue-600 hover:bg-blue-700 text-white text-xs rounded-xl transition-all duration-200 hover:scale-105"
+            className="bg-blue-600 hover:bg-blue-700 text-white text-xs sm:text-sm rounded-xl transition-all duration-200 hover:scale-105"
             title="Translate text"
           >
             {isLoadingTranslate ? (
@@ -60,7 +60,7 @@ const MessageCard = ({
               disabled={isLoadingSummarize}
               onClick={() => handleSummarize(message.id)}
               aria-label="Summarize text"
-              className="bg-blue-600 hover:bg-blue-700 text-white text-sm rounded-xl transition-all duration-200 hover:scale-105"
+              className="bg-blue-600 hover:bg-blue-700 text-white text-xs sm:text-sm rounded-xl transition-all duration-200 hover:scale-105"
               title="Summarize text"
             >
               {isLoadingSummarize ? (
