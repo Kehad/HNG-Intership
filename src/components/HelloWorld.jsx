@@ -26,7 +26,9 @@ const HelloWorld = () => {
   ]);
   const [inputText, setInputText] = useState("");
   const [selectedLanguage, setSelectedLanguage] = useState("en");
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoadingSend, setIsLoadingSend] = useState(false);
+  const [isLoadingTranslate, setIsLoadingTranslate] = useState(false);
+  const [isLoadingSummarize, setIsLoadingSummarize] = useState(false);
   const [error, setError] = useState(null);
   const [translateMessageId, setTranslateMessageId] = useState(null);
   const messagesEndRef = useRef(null);
@@ -73,7 +75,7 @@ const HelloWorld = () => {
       return;
     }
 
-    setIsLoading(true);
+    setIsLoadingSend(true);
     setError(null);
 
     try {
@@ -92,12 +94,12 @@ const HelloWorld = () => {
       console.log(err);
       setError("You can only use Google Chrome");
     } finally {
-      setIsLoading(false);
+      setIsLoadingSend(false);
     }
   };
 
   const handleTranslate = async (messageId, targetLanguage) => {
-    setIsLoading(true);
+    setIsLoadingTranslate(true);
     setError(null);
 
     try {
@@ -126,7 +128,7 @@ const HelloWorld = () => {
     } catch (err) {
       setError("The Translation API is not supported in this device.");
     } finally {
-      setIsLoading(false);
+      setIsLoadingTranslate(false);
       setTranslateMessageId(null);
     }
   };
@@ -136,7 +138,7 @@ const HelloWorld = () => {
   };
 
   const handleSummarize = async (messageId) => {
-    setIsLoading(true);
+    setIsLoadingSummarize(true);
     setError(null);
 
     try {
@@ -179,7 +181,7 @@ const HelloWorld = () => {
     } catch (err) {
       setError("Summarization failed. Please try again.");
     } finally {
-      setIsLoading(false);
+      setIsLoadingSummarize(false);
     }
   };
 
@@ -197,7 +199,8 @@ const HelloWorld = () => {
                 >
                   <MessageCard
                     message={message}
-                    isLoading={isLoading}
+                    isLoadingTranslate={isLoadingTranslate}
+                    isLoadingSummarize={isLoadingSummarize}
                     translateMessageId={translateMessageId}
                     selectedLanguage={selectedLanguage}
                     setSelectedLanguage={setSelectedLanguage}
@@ -226,7 +229,7 @@ const HelloWorld = () => {
         inputText={inputText}
         setInputText={setInputText}
         handleSend={handleSend}
-        isLoading={isLoading}
+        isLoading={isLoadingSend}
       />
     </div>
   );
