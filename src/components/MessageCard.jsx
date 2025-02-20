@@ -10,7 +10,7 @@ import {
   SelectValue,
 } from "./custom/select";
 
-import PropTypes from 'prop-types';
+import PropTypes from "prop-types";
 
 const MessageCard = ({
   message,
@@ -34,32 +34,35 @@ const MessageCard = ({
             {message.language}
           </span>
         </div>
-        <div className="flex gap-2 opacity-80 group-hover:opacity-100 transition-opacity">
+        <div className="flex flex-col gap-2 opacity-80 group-hover:opacity-100 transition-opacity">
           <Button
             disabled={isLoading}
             onClick={() => buttonTranslateHandler(message.id)}
             aria-label="Translate text"
-            className="bg-blue-600 hover:bg-blue-700 text-white w-10 h-10 rounded-xl transition-all duration-200 hover:scale-105"
+            className="bg-blue-600 hover:bg-blue-700 text-white text-xs rounded-xl transition-all duration-200 hover:scale-105"
+            title="Translate text"
           >
-            <Languages className="h-full w-full" />
+            <Languages className="h-4 w-4 mr-1" />
+            Translate
           </Button>
-          <Button
-            disabled={isLoading}
-            onClick={() => handleSummarize(message.id)}
-            aria-label="Summarize text"
-            className="bg-blue-600 hover:bg-blue-700 text-white w-10 h-10 rounded-xl transition-all duration-200 hover:scale-105"
-          >
-            <FileText className="h-full w-full" />
-          </Button>
+          {message.text.length >= 150 && (
+            <Button
+              disabled={isLoading}
+              onClick={() => handleSummarize(message.id)}
+              aria-label="Summarize text"
+              className="bg-blue-600 hover:bg-blue-700 text-white  text-sm  rounded-xl transition-all duration-200 hover:scale-105"
+              title="Summarize text"
+            >
+              <FileText className="h-4 w-4 mr-1" />
+              Summarize
+            </Button>
+          )}
         </div>
       </div>
 
       {translateMessageId === message.id && (
         <div className="mt-6 animate-slideDown">
-          <Select
-            value={selectedLanguage}
-            onValueChange={setSelectedLanguage}
-          >
+          <Select value={selectedLanguage} onValueChange={setSelectedLanguage}>
             <SelectTrigger className="w-48 bg-white/90 border-gray-200 hover:border-blue-300 transition-colors">
               <SelectValue placeholder="Select language" />
             </SelectTrigger>

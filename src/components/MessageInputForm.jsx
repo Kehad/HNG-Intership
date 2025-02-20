@@ -9,9 +9,9 @@ const MessageInputForm = ({
   isLoading,
 }) => {
   return (
-    <div className="bg-white/80 backdrop-blur-sm p-6 rounded-2xl shadow-lg border border-gray-100">
+    <div className="bg-white/80 backdrop-blur-sm p-6 flex flex-col md:flex-row gap-5 rounded-2xl shadow-lg border border-gray-100">
       <textarea
-        className="w-full p-4 border border-gray-200 rounded-xl resize-none h-32 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all text-lg"
+        className="w-full p-4 border border-gray-200 rounded-xl resize-none h-20 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all text-sm"
         value={inputText}
         onChange={(e) => setInputText(e.target.value)}
         placeholder="Type your message here..."

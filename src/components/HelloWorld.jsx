@@ -24,7 +24,7 @@ const HelloWorld = () => {
       summary: "",
     },
   ]);
-  const [inputText, setInputText] = useState("Hello World");
+  const [inputText, setInputText] = useState("");
   const [selectedLanguage, setSelectedLanguage] = useState("en");
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
@@ -89,7 +89,7 @@ const HelloWorld = () => {
       setMessages([...messages, newMessage]);
       setInputText("");
     } catch (err) {
-      console.log(err)
+      console.log(err);
       setError("You can only use Google Chrome");
     } finally {
       setIsLoading(false);
@@ -124,7 +124,7 @@ const HelloWorld = () => {
         })
       );
     } catch (err) {
-      setError("Translation failed. Please try again.");
+      setError("The Translation API is not supported in this device.");
     } finally {
       setIsLoading(false);
       setTranslateMessageId(null);
@@ -142,6 +142,10 @@ const HelloWorld = () => {
     try {
       const message = messages.find((m) => m.id === messageId);
       if (!message) return;
+      if (message.text.length < 150) {
+        setError("Text should not be less than 150");
+        return;
+      }
 
       const options = {
         sharedContext: "Extra content",
@@ -187,7 +191,10 @@ const HelloWorld = () => {
           <Card className="border-none shadow-xl bg-white/80 backdrop-blur-sm">
             <CardContent className="h-[calc(100vh-16rem)] overflow-y-auto p-6 scrollbar-thin scrollbar-thumb-blue-200 scrollbar-track-transparent">
               {messages?.map((message) => (
-                <div key={message.id} className="mb-6 last:mb-8 animate-fadeIn">
+                <div
+                  key={message.id}
+                  className="mb-6 !last:mb-8 animate-fadeIn"
+                >
                   <MessageCard
                     message={message}
                     isLoading={isLoading}
