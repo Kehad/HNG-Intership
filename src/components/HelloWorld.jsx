@@ -15,15 +15,7 @@ const languages = [
 ];
 
 const HelloWorld = () => {
-  const [messages, setMessages] = useState([
-    {
-      id: 1739828729046,
-      text: "Hello World",
-      language: "en",
-      translation: "",
-      summary: "",
-    },
-  ]);
+  const [messages, setMessages] = useState([]);
   const [inputText, setInputText] = useState("");
   const [selectedLanguage, setSelectedLanguage] = useState("en");
   const [isLoadingSend, setIsLoadingSend] = useState(false);
@@ -31,6 +23,7 @@ const HelloWorld = () => {
   const [isLoadingSummarize, setIsLoadingSummarize] = useState(false);
   const [error, setError] = useState(null);
   const [translateMessageId, setTranslateMessageId] = useState(null);
+  const [showWelcomeMessage, setShowWelcomeMessage] = useState(true);
   const messagesEndRef = useRef(null);
 
   const scrollToBottom = () => {
@@ -90,6 +83,7 @@ const HelloWorld = () => {
       };
       setMessages([...messages, newMessage]);
       setInputText("");
+      setShowWelcomeMessage(false); // Hide the welcome message when a text is sent
     } catch (err) {
       console.log(err);
       setError("You can only use Google Chrome");
@@ -190,6 +184,13 @@ const HelloWorld = () => {
       <Header />
       <main className="flex-grow p-4 bg-gradient-to-b from-blue-50 to-white pb-24">
         <div className="max-w-4xl mx-auto space-y-6">
+          {showWelcomeMessage && (
+            <div className="bg-blue-100 border border-blue-200 text-blue-800 p-4 rounded-lg shadow-md">
+              <p>
+                Welcome to the Hello World App! Start by typing a message below.
+              </p>
+            </div>
+          )}
           <Card className="border-none shadow-xl bg-white/80 backdrop-blur-sm">
             <CardContent className="h-[calc(100vh-16rem)] overflow-y-auto p-6 scrollbar-thin scrollbar-thumb-blue-200 scrollbar-track-transparent">
               {messages?.map((message) => (
